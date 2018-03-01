@@ -19,6 +19,9 @@ class LoginForm extends Model
 
     private $_user = false;
 
+    public static function tableName(){
+        return 'users';
+    }
 
     /**
      * @return array the validation rules.
@@ -48,7 +51,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Nome ou senha do usuário incorreta.');
             }
         }
     }
