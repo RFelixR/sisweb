@@ -12,7 +12,14 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'request' => [
+        'db'=>[
+            'class'=>'yii\db\Connection',
+            'dsn' => 'pgsql:host=localhost;port=5432;dbname=db_desafio',
+            'username' => 'postgres',
+            'password' => '246809',
+            'charset' => 'utf8'
+        ],
+       'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '2b4tSumDnuM1uscfvipcA6OEaKwi9Wz3',
         ],
@@ -21,7 +28,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,  //anterior era true
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -43,6 +50,7 @@ $config = [
             ],
         ],
         'db' => $db,
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
