@@ -43,9 +43,9 @@ class Dependentes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_dep' => 'Id Dep',
-            'nome' => 'Nome',
-            'id_usuario' => 'Id Usuario',
+            'id_dep' => 'Id',
+            'nome' => 'Nome do dependente',
+            'id_usuario' => 'Usuário Responsável',
         ];
     }
 

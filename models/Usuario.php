@@ -48,9 +48,9 @@ class Usuario extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_user' => 'Id User',
-            'nome' => 'Nome',
-            'login_u' => 'Login U',
+            'id_user' => 'Id',
+            'nome' => 'Nome do usuário',
+            'login_u' => 'Login',
             'senha' => 'Senha',
             'email' => 'Email',
             'latitude' => 'Latitude',
