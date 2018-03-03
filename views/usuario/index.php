@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Cadastrar Usuário', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Exportar para PDF', ['/usuario/pdf'], ['class'=>'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_user',
             'nome',
             'login_u',
-            'senha:ntext',
             'email:email',
             //'latitude',
             //'longitude',

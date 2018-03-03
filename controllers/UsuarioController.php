@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use mPDF;
 /**
  * UsuarioController implements the CRUD actions for Usuario model.
  */
@@ -64,15 +65,26 @@ class UsuarioController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Usuario();
+        $reg = Usuario::find() -> all();
+        $total = count($reg);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_user]);
+        if($total >=3){
+
+            Yii::$app->session->setFlash('error','Você não pode cadastra mais de 3 usuários');
+            return $this-> redirect (['index']);
+        }else{
+
+            $model = new Usuario();
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id_user]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -124,4 +136,39 @@ class UsuarioController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    //Gera o pdf somente do usuário selecionado -index
+    public function actionPdfu($id) {
+        $mpdf = new \Mpdf\Mpdf();
+        $registros = Usuario::findOne($id);
+            $mpdf->WriteHTML ('<h1>Lista de Usuário(s) Cadastrado(s)</h1></<br>');
+            $mpdf->WriteHTML ('Nome Completo: '.$registros->nome.'</br>');
+            $mpdf->WriteHTML ('login: '.$registros->login_u.'</br>');
+            $mpdf->WriteHTML ('senha: '."*******'".'</br>');
+            $mpdf->WriteHTML ('email: '.$registros->email.'</br>');
+            $mpdf->WriteHTML ('<br/><br/>');
+
+        //fecha a aplicacao
+        $mpdf->Output();
+        exit;
+    }
+
+    //gera o pdf de todos os usuarios cadastrado- view
+    public function actionPdf(){
+      $mpdf = new \Mpdf\Mpdf();
+      $reg = Usuario::find()->All();
+        $mpdf->WriteHTML ('<h1>Lista de Usuário(s) Cadastrado(s)</h1></<br>');
+       foreach($reg as $row){
+
+           $mpdf->WriteHTML('Nome completo: '.$row['nome'].'</<br>>');
+           $mpdf->WriteHTML ('login: '.$row['login_u'].'</br>');
+           $mpdf->WriteHTML ('senha: '."*******'".'</br>');
+           $mpdf->WriteHTML ('email: '.$row['email'].'</br>');
+           $mpdf->WriteHTML ('<br/><br/>');
+       }
+       $mpdf->OutPut();
+       exit;
+    }
+
+
 }
