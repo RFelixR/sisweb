@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Dependentes */
 
-$this->title = $model->id_dep;
+$this->title = $model->nome;
 $this->params['breadcrumbs'][] = ['label' => 'Dependentes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
