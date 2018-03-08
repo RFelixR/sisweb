@@ -138,7 +138,7 @@ class UsuarioController extends Controller
     }
 
     //Gera o pdf somente do usuário selecionado -index
-    public function actionPdfu($id) {
+    public function actionPdfUsuario($id) {
         $mpdf = new \Mpdf\Mpdf();
         $registros = Usuario::findOne($id);
             $mpdf->WriteHTML ('<h1>Lista de Usuário(s) Cadastrado(s)</h1></<br>');
