@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id_dep',
             'nome',
-            'id_usuario',
+            ['label'=>'Nome do responsável ','value'=>'usuario.nome'],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

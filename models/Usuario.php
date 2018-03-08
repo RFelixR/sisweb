@@ -64,6 +64,6 @@ class Usuario extends \yii\db\ActiveRecord
      */
     public function getDependentes()
     {
-        return $this->hasMany(Dependentes::className(), ['id_usuario' => 'id_user']);
+        return $this->hasOne(Dependentes::className(), ['id_usuario' => 'id_user']);
     }
 }

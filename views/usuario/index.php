@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome',
             'login_u',
             'email:email',
+            ['label'=>'Dependentes','value'=>'dependentes.nome'],
             //'latitude',
             //'longitude',
 

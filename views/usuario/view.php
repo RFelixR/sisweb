@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a(Yii::t('app', 'PDF'), ['pdfu', 'id' => $model->id_user], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'PDF'), ['pdf-usuario', 'id' => $model->id_user], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
